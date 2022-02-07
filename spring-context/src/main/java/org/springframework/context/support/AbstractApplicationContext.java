@@ -552,7 +552,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			// Tell the subclass to refresh the internal bean factory.
 			//  创建容器对象 DefaultListableBeanFactory
 			// 加载xml配置文件的属性值到当前工厂中, 最重要的是BeanDefinition
-
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
 			// Prepare the bean factory for use in this context.
@@ -634,11 +633,12 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		}
 
 		// Initialize any placeholder property sources in the context environment.
+		// 初始化资源属性
 		initPropertySources();
 
 		// Validate that all properties marked as required are resolvable:
 		// see ConfigurablePropertyResolver#setRequiredProperties
-		// 获取环境和属性资源
+		// 获取环境和属性资源，验证需要的属性文件是否都已经放入环境中
 		getEnvironment().validateRequiredProperties();
 
 		// 获取监听器集合对象
@@ -673,6 +673,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * @see #getBeanFactory()
 	 */
 	protected ConfigurableListableBeanFactory obtainFreshBeanFactory() {
+		// 初始化BeanFactory ,并进行xml文件读取，并将得到的BeanFactory记录在当前实体的属性中
 		refreshBeanFactory();
 		return getBeanFactory();
 	}
