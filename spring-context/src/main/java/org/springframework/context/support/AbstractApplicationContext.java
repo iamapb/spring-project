@@ -563,6 +563,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 				StartupStep beanPostProcess = this.applicationStartup.start("spring.context.beans.post-process");
 				// Invoke factory processors registered as beans in the context.
+				// 调用bean工厂的后置处理器
 				invokeBeanFactoryPostProcessors(beanFactory);
 
 				// Register bean processors that intercept bean creation.
@@ -573,18 +574,30 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				initMessageSource();
 
 				// Initialize event multicaster for this context.
+				/**
+				 * 创建事件多播器
+				 */
 				initApplicationEventMulticaster();
 
 				// Initialize other special beans in specific context subclasses.
+				/**
+				 * 留给子类实现 springboot从这个方法进行启动tomcat的
+				 */
 				onRefresh();
 
 				// Check for listener beans and register them.
+				/**
+				 * 把我们的事件监听器注册到多播器上
+				 */
 				registerListeners();
 
 				// Instantiate all remaining (non-lazy-init) singletons.
 				finishBeanFactoryInitialization(beanFactory);
 
 				// Last step: publish corresponding event.
+				/**
+				 * 最后容器刷新 发布刷新事件(spring cloud 也是从这里启动的)
+				 */
 				finishRefresh();
 			}
 

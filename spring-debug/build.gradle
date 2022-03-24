@@ -11,6 +11,8 @@ repositories {
 
 dependencies {
     api(project(":spring-context")) // 引用的添加
+    api(project(":spring-aspects"))  // 添加aspects
+    api(project(":spring-aop"))  // 添加aop
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }
