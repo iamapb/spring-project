@@ -12,6 +12,7 @@
 
 	</bean>
 
-	<aop:aspectj-autoproxy proxy-target-class="true"/>
+<!--	<aop:aspectj-autoproxy proxy-target-class="true"/>-->
+<!--	<bean class="com.debug.aop.UserAspect"></bean>-->
 
 </beans>

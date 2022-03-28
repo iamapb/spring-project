@@ -551,7 +551,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 			// Tell the subclass to refresh the internal bean factory.
 			//  创建容器对象 DefaultListableBeanFactory
-			// 加载xml配置文件的属性值到当前工厂中, 最重要的是BeanDefinition
+			// 加载xml配置文件的属性值到当前工厂中, 最重要的是BeanDefinition 这里去解析xml文件 获取是否有aop的开启 然后去获取对应的bean
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
 			// Prepare the bean factory for use in this context.
@@ -563,7 +563,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 				StartupStep beanPostProcess = this.applicationStartup.start("spring.context.beans.post-process");
 				// Invoke factory processors registered as beans in the context.
-				// 调用bean工厂的后置处理器
+				// 调用bean工厂的后置处理器 这里是使用aop的地方
 				invokeBeanFactoryPostProcessors(beanFactory);
 
 				// Register bean processors that intercept bean creation.
