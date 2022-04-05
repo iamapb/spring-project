@@ -560,7 +560,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 			try {
 				// Allows post-processing of the bean factory in context subclasses.
-				// 这里只要去获取一些系统启动的参数 主要放在 singletonObjects这个内存缓存里面
+				// 这里只要去获取一些系统启动的参数 主要放在 singletonObjects这个内存缓存里面 用于子类的扩展
 				postProcessBeanFactory(beanFactory);
 
 				StartupStep beanPostProcess = this.applicationStartup.start("spring.context.beans.post-process");
@@ -619,6 +619,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 				// Instantiate all remaining (non-lazy-init) singletons.
 				// 将项目中所以非懒加载的单实例Bean进行初始化加载
+				// 这里就是去加载那些 aop的代理类的bean
 				finishBeanFactoryInitialization(beanFactory);
 
 				// Last step: publish corresponding event.
